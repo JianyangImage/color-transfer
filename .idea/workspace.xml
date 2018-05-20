@@ -2,6 +2,81 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7208b39e-3729-4ec1-adbc-ec8b530f09c4" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/build.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/check-versions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/dev-client.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/dev-server.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/utils.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/webpack.base.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/webpack.dev.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/webpack.prod.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/dev.env.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/prod.env.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/directoryList.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/css/app.38dad5a02742c38ef475d92bb81f75ed.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/css/app.38dad5a02742c38ef475d92bb81f75ed.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/css/element-variables.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/fonts/element-icons.b02bdc1.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/LOGO-b.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/LOGO-s.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/LOGO-slccc1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/LOGO-ss.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/filter-clarity.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/filter-concentrate.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/filter-crossProcess.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/filter-hazyDays.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/filter-jarques.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/filter-lomo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/filter-nostalgia.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/filter-pinhole.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/filter-sinCity.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/filter-sunrise.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/test-1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/test-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/test-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/test-4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/test-5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/test-6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/test-7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/test-8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/image/test-9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/img/LOGO-s.a32e678.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/js/app.05c99052af441346ce22.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/js/app.05c99052af441346ce22.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/js/manifest.4d28107ceba31963fc7f.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/js/manifest.4d28107ceba31963fc7f.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/js/vendor.a012c0eb7ec0945c6b78.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/js/vendor.a012c0eb7ec0945c6b78.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/lib/caman.full.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/blur.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/cancel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/canvas.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/crop.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/cut.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/delete.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/editor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/filter.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/flip_horizontal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/flip_vertical.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/fun.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/github.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/left-close.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/mirror.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/move.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/ok.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/plus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/reset.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/right-open.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/rotateR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/rotatel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/save.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/upload.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/vue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/static/sprites/webpack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.bin/acorn" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.bin/ansi-html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.bin/babylon" beforeDir="false" />
@@ -13434,6 +13509,149 @@
       <change beforePath="$PROJECT_DIR$/node_modules/yargs/lib/usage.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/yargs/lib/validation.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/yargs/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VPic.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/js/HSBChannel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/js/colorTransfer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/js/curve.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Veditor/canvas.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Veditor/cropp.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Veditor/index.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Veditor/tip.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Veditor/upload_module/dialog.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Veditor/upload_module/index.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/filter.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sidebar.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sourceUpload.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/toolbar_module/action.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/toolbar_module/index.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/element-variables.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/LOGO-b.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/LOGO-s.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/LOGO-slccc1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/LOGO-ss.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/filter-clarity.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/filter-concentrate.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/filter-crossProcess.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/filter-hazyDays.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/filter-jarques.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/filter-lomo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/filter-nostalgia.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/filter-pinhole.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/filter-sinCity.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/filter-sunrise.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/test-1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/test-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/test-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/test-4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/test-5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/test-6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/test-7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/test-8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/image/test-9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/lib/caman.full.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/blur.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/cancel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/canvas.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/crop.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/cut.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/delete.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/editor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/filter.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/flip_horizontal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/flip_vertical.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/fun.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/github.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/left-close.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/mirror.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/move.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/ok.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/plus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/reset.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/right-open.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/rotateR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/rotatel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/save.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/upload.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/vue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/sprites/webpack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/alert.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/autocomplete.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/badge.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/base.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/breadcrumb-item.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/breadcrumb.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/button-group.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/button.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/card.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/carousel-item.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/carousel.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/cascader.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/checkbox-button.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/checkbox-group.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/checkbox.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/col.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/collapse-item.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/collapse.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/color-picker.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/date-picker.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/dialog.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/dropdown-item.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/dropdown-menu.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/dropdown.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/element-variables.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/fonts/element-icons.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/fonts/element-icons.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/form-item.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/form.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/icon.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/input-number.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/input.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/loading.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/menu-item-group.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/menu-item.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/menu.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/message-box.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/message.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/notification.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/option-group.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/option.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/pagination.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/popover.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/progress.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/radio-button.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/radio-group.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/radio.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/rate.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/reset.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/row.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/scrollbar.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/select-dropdown.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/select.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/slider.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/spinner.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/step.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/steps.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/submenu.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/switch.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/tab-pane.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/table-column.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/table.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/tabs.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/tag.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/time-picker.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/time-select.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/tooltip.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/transfer.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/tree.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/theme/upload.css" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -13484,6 +13702,11 @@
               <item name="color-transfer" type="b2602c69:ProjectViewProjectNode" />
               <item name="color-transfer" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="color-transfer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="color-transfer" type="462c0819:PsiDirectoryNode" />
+              <item name="VPic" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -13525,12 +13748,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526787922554</updated>
-      <workItem from="1526787924550" duration="730000" />
+      <workItem from="1526787924550" duration="980000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="730000" />
+    <option name="totallyTimeSpent" value="980000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
