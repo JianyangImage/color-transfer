@@ -1,7 +1,14 @@
 <template>
   <div class="canvas" v-show="editable">
+    <canvas ref="histogramCanvas"
+            style="position: absolute ; top: 0; left: 0;"
+            id="histogram"
+            width="256"
+            height="128"
+    ></canvas>
     <div @dblclick="dblclick" class="editor" v-loading="loading" element-loading-text="滤镜计算中 ···">
       <!--<div style="position:relative width: 600px height:400px;">-->
+
       <div style="position: absolute"
            :width=width
            :height=height
@@ -26,7 +33,8 @@
       <!--/>-->
       <!--</div>-->
       <canvas ref="canvas"
-              class="control__canvas">
+              class="control__canvas"
+              id="jy_canvas">
       </canvas>
         <!--<template v-if="url"><img :src="url" :alt="name" @load="load"></template>-->
     </div>
@@ -40,6 +48,7 @@
   import Cropp from './cropp';
   import $ from 'jquery';
   import { RgbToLab, LabToRgb, RgbToGray, FCM, FCMCluster, DistanceLab } from '../../assets/js/colorTransfer';
+  import { Filter } from '../../assets/js/filter';
 
   const caman = window.Caman;
 
@@ -73,7 +82,7 @@
         loading: false,
         cropping: false,
         uploaded: false,
-        // URL: '',
+        // filter: '',
       };
     },
     components: {
@@ -102,6 +111,9 @@
       },
       editable() {
         return this.$store.state.uploaded;
+      },
+      filter() {
+        return this.$store.state.imgFilter;
       },
       croppable() {
         return this.$store.state.cropping;
@@ -163,6 +175,15 @@
       lisenActionType() {
         return this.$store.state.actionType;
       },
+      restfiltering() {
+        return this.$store.state.restFiltering;
+      },
+      savefiltering() {
+        return this.$store.state.saveFiltering;
+      },
+      vignetteing() {
+        return this.$store.state.vignetteing;
+      },
     },
     watch: {
       editable(show) {
@@ -193,7 +214,39 @@
             // this.pixelsData = this.imgData.data;
             this.curImgData = vm.context.getImageData(0, 0, this.canvas.width, this.canvas.height);
             this.curPixelsData = this.curImgData.data;
+            this.histgoram();
           };
+        }
+      },
+      filter(filterType) {
+        // console.log(1);
+        if (this.uploaded) {
+          this.setFilter(filterType);
+        }
+      },
+      restfiltering(bool) {
+        if (this.uploaded && bool) {
+          this.histgoram();
+          let canvas = this.$refs.canvas;
+          let ctx = canvas.getContext('2d');
+          const imageObject = new Image();
+          imageObject.src = this.$store.state.imgMsg.url;
+          imageObject.onload = () => {
+            // ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(imageObject, 0, 0, canvas.width, canvas.height);
+          };
+          this.$store.dispatch('setRestFiltering', false);
+          this.$store.dispatch('setFilter', '');
+        }
+      },
+      savefiltering(bool) {
+        if (this.uploaded && bool) {
+          let canvas = this.$refs.canvas;
+          const URL = canvas.toDataURL('image/jpeg');
+          // this.$store.dispatch('setResultUrl', URL);
+          this.$store.dispatch('setImgUrl', URL);
+          this.$store.dispatch('setSaveFiltering', false);
+          this.$store.dispatch('setFilter', '');
         }
       },
       transfering(bool) {
@@ -264,13 +317,30 @@
       },
       vignette(value) {
         if (this.uploaded) {
-          this.drawImgByBrightness(this.curPixelsData, value);
+          caman('#jy_canvas', function () {
+            this.revert(false);
+            this.vignette('120%', value)
+            this.render();
+          });
+        }
+      },
+      vignetteing(bool) {
+        if (this.uploaded && bool) {
+          this.histgoram();
+          let canvas = this.$refs.canvas;
+          const URL = canvas.toDataURL('image/jpeg');
+          this.$store.dispatch('setImgUrl', URL);
+          this.$store.dispatch('setVignetteing', false);
+          // let canvas = this.$refs.canvas;
+          // const URL = canvas.toDataURL('image/jpeg');
+          // this.$store.dispatch('setImgUrl', URL);
         }
       },
       lisenActionType(type) {
         if (type) {
           const actionType = type.actionType;
-          console.log(actionType)
+          console.log(type);
+          console.log(actionType);
           const actionMap = {
             remove: this.remove,
             clear: this.clear,
@@ -322,24 +392,34 @@
       // },
     },
     methods: {
-      // calCanvasWidthAndHeight() {
-      //   const canvasMaxWidth = (document.body.clientWidth - 300) * 0.7;
-      //   const canvasMaxHeight = (document.body.clientHeight - 60) * 0.7;
-      //   this.n = this.width / this.height;
-      //   this.width = this.$store.state.imgMsg.width;
-      //   this.height = this.$store.state.imgMsg.height;
-      //   if (this.width >= this.height) {
-      //     // if(this.width >= canvasMaxWidth){
-      //     this.q = this.width / canvasMaxWidth;
-      //     this.canvasWidth = Math.round(canvasMaxWidth);
-      //     this.canvasHeight = Math.round(this.height / this.q);
-      //     // }
-      //   } else {
-      //     this.q = this.height / canvasMaxHeight;
-      //     this.canvasWidth = Math.round(this.width / this.q);
-      //     this.canvasHeight = Math.round(canvasMaxHeight);
-      //   }
-      // },
+      histgoram() {
+        let canvas = this.$refs.canvas;
+        let ctx = canvas.getContext('2d');
+        let imgData = ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+        let pixelsData = imgData.data;
+        console.log(pixelsData)
+        let histogramCanvas = this.$refs.histogramCanvas;
+        let histogramCtx =  histogramCanvas.getContext('2d');
+        histogramCtx.clearRect(0, 0, histogramCanvas.width, histogramCanvas.height);
+
+        let maxValue = 0;
+        let h = new Array(256);
+        for (let i = 0 ; i < 256 ; i++) {
+          h[i] = 0;
+        }
+        for (let i = 0; i < pixelsData.length ; i += 4) {
+          let l = Math.round(pixelsData[i] * 0.3 + pixelsData[i+1] * 0.59 + pixelsData[i+2] * 0.11);
+          h[l] += 1;
+        }
+        for (let i = 0 ; i < 256 ; i++) {
+          histogramCtx.beginPath()
+          histogramCtx.moveTo(i , 128);
+          histogramCtx.lineTo(i , 128 - h[i]/24);
+          histogramCtx.closePath();
+          histogramCtx.strokeStyle = 'white';
+          histogramCtx.stroke();
+        }
+      },
       calCanvasWidthAndHeight(imgWidth, imgHeight) {
         const maxWidth = Math.round((document.body.clientWidth - 300) * 0.75);
         const maxHeight = Math.round((document.body.clientHeight - 60) * 0.75);
@@ -396,8 +476,9 @@
           title: '提示',
           message: '参数调整完成 可点击下载',
           type: 'success',
-          duration: 1500,
+          duration: 1200,
         });
+        this.histgoram();
       },
       drawImgByBrightness(curPixelsData, brightnessValue, contrastValue) {
         // const vm = this;
@@ -416,6 +497,7 @@
         ctx.putImageData(imgData, 0, 0);
         const URL = canvas.toDataURL('image/jpeg');
         this.$store.dispatch('storeResult', URL);
+        this.histgoram();
       },
       drawImgBySaturation(curPixelsData, saturation) {
         let canvas = this.$refs.canvas;
@@ -434,6 +516,7 @@
         ctx.putImageData(imgData, 0, 0);
         const URL = canvas.toDataURL('image/jpeg');
         this.$store.dispatch('storeResult', URL);
+        this.histgoram();
       },
       drawImgByHSL(curPixelsData, channels) {
         let canvas = this.$refs.canvas;
@@ -490,6 +573,7 @@
         ctx.putImageData(imgData, 0, 0);
         const URL = canvas.toDataURL('image/jpeg');
         this.$store.dispatch('storeResult', URL);
+        this.histgoram();
       },
       drawImgByBlur(curPixelsData, radius, sigma){
         let canvas = this.$refs.canvas;
@@ -574,6 +658,7 @@
           ctx.putImageData(imgData, 0, 0);
           const URL = canvas.toDataURL('image/jpeg');
           this.$store.dispatch('storeResult', URL);
+          this.histgoram();
         }
       },
       drawImgByColorToGrey(curPixelsData, bool) {
@@ -595,6 +680,7 @@
         }
         const URL = canvas.toDataURL('image/jpeg');
         this.$store.dispatch('storeResult', URL);
+        this.histgoram();
       },
       drawImgByInvert(curPixelsData, bool) {
         let canvas = this.$refs.canvas;
@@ -614,6 +700,7 @@
         }
         const URL = canvas.toDataURL('image/jpeg');
         this.$store.dispatch('storeResult', URL);
+        this.histgoram();
       },
       drawImgBySharpen(curPixelsData, sharpen) {
         const sharpenValue = sharpen / 100;
@@ -653,6 +740,7 @@
         ctx.putImageData(imgData, 0 , 0);
         const URL = canvas.toDataURL('image/jpeg');
         this.$store.dispatch('storeResult', URL);
+        this.histgoram();
       },
       drawImgByRotate(rotateValue) {
         let canvas = this.$refs.canvas;
@@ -680,6 +768,7 @@
         ctx.restore();
         const URL = canvas.toDataURL('image/jpeg');
         this.$store.dispatch('storeResult', URL);
+        this.histgoram();
       },
       drawImgByCurves(curPixelsData, colorTables) {
         let canvas = this.$refs.canvas;
@@ -695,6 +784,7 @@
         ctx.putImageData(imgData,0,0);
         const URL = canvas.toDataURL('image/jpeg');
         this.$store.dispatch('storeResult', URL);
+        this.histgoram();
       },
       // setArgument(val) {
       //   // const self = this;
@@ -865,20 +955,205 @@
           return p + (q - p) * (2.0/3.0 - t) * 6.0;
         return p;
       },
-      setFilter(filter) {
-        let imgUrl = '';
-        this.loading = true;
 
-        this.imgPaper = caman('.cropper-canvas .canvas-img', () => {
-          this.imgPaper.revert(true);
-          this.imgPaper[filter]();
-          this.imgPaper.render(() => {
-            imgUrl = this.imgPaper.toBase64(this.$store.state.imgMsg.type);
-            this.$store.dispatch('setImgUrl', imgUrl);
-            this.loading = false;
-          });
-        });
+      // storeResult(URL) {
+      //   this.$store.dispatch('storeResult', URL);
+      //   console.log(this.$store.state.imgMsg);
+      // },
+      doScaledTimeout(i) {
+        setInterval(function () {
+        }, 1500);
+        this.$store.dispatch('storeResult', URL);
       },
+      setFilter(type) {
+        console.log(type);
+
+        let canvas = this.$refs.canvas;
+
+        // let canvas = this.$refs.canvas;
+        // let ctx = canvas.getContext('2d');
+        // let imgData = ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+        // let pixelsData = imgData.data;
+
+        switch (type) {
+          case 'sunrise':
+            caman(canvas, function () {
+              this.revert(false);
+              this.exposure(3.5);
+              this.saturation(-5);
+              this.vibrance(50);
+              this.sepia(60);
+              this.colorize('#e87b22', 10);
+              this.channels({
+                red: 8,
+                blue: 8,
+              });
+              this.contrast(5);
+              this.gamma(1.2);
+              this.render();
+            });
+            break;
+          case 'lomo':
+            caman('#jy_canvas', function () {
+              this.revert(false);
+              this.brightness(15);
+              this.exposure(15);
+              this.curves('rgb', [0, 0], [200, 0], [155, 255], [255, 255]);
+              this.saturation(-20);
+              this.gamma(1.8);
+              this.brightness(5);
+              this.render();
+            });
+            break;
+          case 'clarity':
+            caman('#jy_canvas', function () {
+              this.revert(false);
+              this.vibrance(20);
+              this.curves('rgb', [5, 0], [130, 150], [190, 220], [250, 255]);
+              this.sharpen(15);
+              this.render();
+            });
+            break;
+          case 'hazyDays':
+            caman('#jy_canvas', function () {
+              this.revert(false);
+              this.gamma(1.2);
+              this.newLayer(function () {
+                this.setBlendingMode('overlay');
+                this.opacity(60);
+                this.copyParent();
+                this.filter.channels({
+                  red: 5,
+                });
+                return this.filter.stackBlur(15);
+              });
+              this.newLayer(function () {
+                this.setBlendingMode('addition');
+                this.opacity(40);
+                return this.fillColor('#6899ba');
+              });
+              this.newLayer(function () {
+                this.setBlendingMode('multiply');
+                this.opacity(35);
+                this.copyParent();
+                this.filter.brightness(40);
+                this.filter.vibrance(40);
+                this.filter.exposure(30);
+                this.filter.contrast(15);
+                this.filter.curves('r', [0, 40], [128, 128], [128, 128], [255, 215]);
+                this.filter.curves('g', [0, 40], [128, 128], [128, 128], [255, 215]);
+                this.filter.curves('b', [0, 40], [128, 128], [128, 128], [255, 215]);
+                return this.filter.stackBlur(5);
+              });
+              this.curves('r', [20, 0], [128, 158], [128, 128], [235, 255]);
+              this.curves('g', [20, 0], [128, 128], [128, 128], [235, 255]);
+              this.curves('b', [20, 0], [128, 108], [128, 128], [235, 255]);
+              this.render();
+            });
+            break;
+          case 'crossProcess':
+            caman('#jy_canvas', function () {
+              this.revert(false);
+              this.exposure(5);
+              this.colorize('#e87b22', 4);
+              this.sepia(20);
+              this.channels({
+                blue: 8,
+                red: 3,
+              });
+              this.curves('b', [0, 0], [100, 150], [180, 180], [255, 255]);
+              this.contrast(15);
+              this.vibrance(75);
+              this.gamma(1.6);
+              this.render();
+            });
+            break;
+          case 'concentrate':
+            caman('#jy_canvas', function () {
+              this.revert(false);
+              this.sharpen(40);
+              this.saturation(-50);
+              this.channels({
+                red: 3,
+              });
+              this.newLayer(function () {
+                this.setBlendingMode('multiply');
+                this.opacity(80);
+                this.copyParent();
+                this.filter.sharpen(5);
+                this.filter.contrast(50);
+                this.filter.exposure(10);
+                return this.filter.channels({
+                  blue: 5,
+                });
+              });
+              this.brightness(10);
+              this.render();
+            });
+            break;
+          case 'jarques':
+            caman('#jy_canvas', function () {
+              this.revert(false);
+              this.saturation(-35);
+              this.curves('b', [20, 0], [90, 120], [186, 144], [255, 230]);
+              this.curves('r', [0, 0], [144, 90], [138, 120], [255, 255]);
+              this.curves('g', [10, 0], [115, 105], [148, 100], [255, 248]);
+              this.curves('rgb', [0, 0], [120, 100], [128, 140], [255, 255]);
+              this.sharpen(20);
+              this.render();
+            });
+            break;
+          case 'nostalgia':
+            caman('#jy_canvas', function () {
+              this.revert(false);
+              this.saturation(20);
+              this.gamma(1.4);
+              this.greyscale();
+              this.contrast(5);
+              this.sepia(100);
+              this.channels({
+                red: 8,
+                blue: 2,
+                green: 4,
+              });
+              this.gamma(0.8);
+              this.contrast(5);
+              this.exposure(10);
+              this.newLayer(function () {
+                this.setBlendingMode('overlay');
+                this.copyParent();
+                this.opacity(55);
+                return this.filter.stackBlur(10);
+              });
+              this.render();
+            });
+            break;
+          case 'pinhole':
+            caman('#jy_canvas', function () {
+              this.revert(false);
+              this.greyscale();
+              this.sepia(10);
+              this.exposure(10);
+              this.contrast(15);
+              this.render();
+            });
+            break;
+          case 'sinCity':
+            caman('#jy_canvas', function () {
+              this.revert(false);
+              this.contrast(100);
+              this.brightness(15);
+              this.exposure(10);
+              this.posterize(80);
+              this.clip(30);
+              this.greyscale();
+              this.render();
+            });
+            break;
+        }
+      },
+
+
       // initPaper() {
       //   const imgMsg = this.$store.state.imgMsg;
       //   this.type = imgMsg.type;
@@ -1157,7 +1432,7 @@
             title: '提示',
             message: '图片剪裁成功',
             type: 'success',
-            duration: 1500,
+            duration: 1200,
           });
           // this.nextCrop();
           // this.$store.dispatch('cropImgMsg', {
@@ -1208,7 +1483,7 @@
             title: '提示',
             message: '清空画布成功 可导入新的图片',
             type: 'success',
-            duration: 3500,
+            duration: 1200,
           });
           // this.$store.dispatch('cancelRemoving');
           // this.$store.dispatch('cancelUpload');

@@ -46,8 +46,8 @@
           {
             width: '1600',
             height: '900',
-            name: 'test-1.jpg',
-            src: './static/image/test-1.jpg',
+            name: 'test-1.jpeg',
+            src: './static/image/test-1.jpeg',
           },
           {
             width: '1600',
@@ -58,8 +58,8 @@
           {
             width: '1600',
             height: '900',
-            name: 'test-3.jpg',
-            src: './static/image/test-3.jpg',
+            name: 'test-3.jpeg',
+            src: './static/image/test-3.jpeg',
           },
           {
             width: '1600',
@@ -70,8 +70,8 @@
           {
             width: '1600',
             height: '900',
-            name: 'test-5.jpg',
-            src: './static/image/test-5.jpg',
+            name: 'test-5.jpeg',
+            src: './static/image/test-5.jpeg',
           },
           {
             width: '1600',

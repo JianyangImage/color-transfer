@@ -1,17 +1,17 @@
 <template>
   <div class="clearfix">
-    <ul class="action-list fl" @click="click" v-show="uploaded">
-        <li class="fr"  @click="isOpen = !isOpen">
-          <button :class="closeClass" :title="closeTitle"><span class="icon"></span></button>
-        </li>
-        <li class="fr" v-for="item in actionMap" v-show="isOpen">
-          <button :data-action="item.actionType" :class="item.className" :title="item.title"><span class="icon"></span></button>
-        </li>
-    </ul>
+    <!--<ul class="action-list fl" @click="click" v-show="uploaded">-->
+        <!--<li class="fr"  @click="isOpen = !isOpen">-->
+          <!--<button :class="closeClass" :title="closeTitle"><span class="icon"></span></button>-->
+        <!--</li>-->
+        <!--<li class="fr" v-for="item in actionMap" v-show="isOpen">-->
+          <!--<button :data-action="item.actionType" :class="item.className" :title="item.title"><span class="icon"></span></button>-->
+        <!--</li>-->
+    <!--</ul>-->
     <ul class="action-list fr" @click="click">
-      <li class="fr">
-        <a :href="github" target="_blank" class="github-btn btn" title="项目地址"><span class="icon"></span></a>
-      </li>
+      <!--<li class="fr">-->
+        <!--<a :href="github" target="_blank" class="github-btn btn" title="项目地址"><span class="icon"></span></a>-->
+      <!--</li>-->
       <li class="fr">
         <a :href="url" :download="name" class="save-btn btn" title="下载保存" v-show="url"><span class="icon"></span></a>
       </li>

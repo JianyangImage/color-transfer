@@ -182,7 +182,7 @@ let Curve = {
       curveCtx.lineTo(255,255-191);
 
       curveCtx.closePath();
-
+      curveCtx.strokeStyle = 'white';
       curveCtx.stroke();
 
       //create curve
@@ -195,11 +195,11 @@ let Curve = {
           z[i] = 255;
       }
       for (let i = 1; i < 256; ++i ) {
-        // line( mat, Point(i-1, 255 - z[i-1]), Point(i, 255 - z[i]), color, 1, 8 );
         curveCtx.beginPath()
         curveCtx.moveTo(i-1 , 255 - z[i-1]);
         curveCtx.lineTo(i , 255 - z[i]);
         curveCtx.closePath();
+        curveCtx.strokeStyle = 'white';
         curveCtx.stroke();
       }
       curveCtx.stroke();
@@ -207,8 +207,9 @@ let Curve = {
       for (let i = 0 ; i<this.points.length ; i++, n++ ) {
         // thinkness = (this.points[i] === this.current) ? -1 : 1;
         curveCtx.beginPath();
-        curveCtx.rect(this.points[i].x - 3 , 255 - this.points[i].y - 3 , 6 , 6);
+        // curveCtx.rect(this.points[i].x - 8 , 255 - this.points[i].y - 8 , 16 , 16);
         curveCtx.closePath();
+        // curveCtx.strokeStyle = 'white';
         curveCtx.stroke();
         // rectangle(mat, Point(this.points[i].x - 2, 255 - this.points[i].y + 2),
         // Point(this.points[i].x + 2, 255 - this.points[i].y - 2), color, thinkness, 8);
@@ -230,9 +231,9 @@ let Curve = {
       // var next = this.currentNext();
       // var next_x = next.x;
       let pre,
-          next,
-          prev_x,
-          next_x;
+        next,
+        prev_x,
+        next_x;
       if ( this.is_mouse_down ) {
         if( 0 <= y && y <= 255 ){
           if( this.currentPre() && this.currentNext() ){
@@ -527,32 +528,7 @@ function drawImgByCurves(inPixelsData , colorTables ) {
   ctx.putImageData(imgData,0,0);
   histogram();
 }
-// function CurvesCancel() {
-//   var past_imgData = HistoricalAdjustments[HistoricalAdjustments.length-1].resultImgData;
-//   ctx.putImageData(past_imgData, 0, 0);
-// }
-// function CurvesOk() {
-//   var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-//   var colorTables = this.curves.createColorTables();
-//   var curves_adjustment = Adjustment.creatNew();
-//   curves_adjustment.name = "curves";
-//   curves_adjustment.curvesColorTables = colorTables;
-//   curves_adjustment.resultImgData = imgData;
-//   curves_adjustment.resultPixelsData = imgData.data;
-//
-//   HistoricalAdjustments.push(curves_adjustment);
-//
-//   current_imgData = imgData;
-//   current_pixelsData = imgData.data;
-//
-//   rotate_ctx.putImageData(imgData, 0, 0);
-//
-//   curves = Curves.createNew();
-//   curveCtx.clearRect(0, 0, curveCanvas.width, curveCanvas.height);
-//   this.curves.draw();
-//
-//   console.log(HistoricalAdjustments);
-// }
+
 
 export default{
   Curves,

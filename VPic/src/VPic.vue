@@ -106,7 +106,7 @@
     #vpic_sidebar {
       position: absolute;
       top: 100px;
-      bottom: 30px;
+      bottom: 0;
       left: 0;
       width: 100%;
       background: #324057;

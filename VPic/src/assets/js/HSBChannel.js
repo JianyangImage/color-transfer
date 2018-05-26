@@ -1,4 +1,3 @@
-let a = [1,2,3];
 let HSBChannel = {
   createNew: function () {
       let channel = {};
@@ -15,12 +14,12 @@ let HSBChannel = {
 
       channel.setColorIndex = function (index) {
           var data = [
-          [   0,   0, 360, 360],
-          [ 315, 345,   15, 45],//red
-          // [   7,  22,  38,  53],//orange
-          [  15,  45,  75, 105],//yellow
-          [  75, 105, 135, 165],//green
-          [ 135, 165, 195, 225],//cyan
+          // [   0,   0, 360, 360],
+          [ 315, 345,   15, 23],//red
+          [   15,  23,  37,  45],//orange
+          [  37,  45,  75, 90],//yellow
+          [  90, 105, 135, 150],//green
+          [ 150, 165, 195, 210],//cyan
           [ 195, 225, 255, 285],//blue
           [ 255, 285, 315, 345] //purple
           ];
@@ -247,61 +246,6 @@ function HslCancel() {
     channels_7[i].brightness = 0.0;
     channels_7[i].defined = false;
   }
-}
-
-function HslOk() {
-  var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  // debugger;
-  // debugger;
-
-  const channel = deepCopy(channels_7);
-  // const channel = JSON.parse(JSON.stringify(channels_7));
-
-  var hsl_adjustment = Adjustment.creatNew();
-  hsl_adjustment.name = "hsl";
-  hsl_adjustment.channels = channel;
-  hsl_adjustment.resultImgData = imgData;
-  hsl_adjustment.resultPixelsData = imgData.data;
-
-  HistoricalAdjustments.push(hsl_adjustment);
-
-  console.log(HistoricalAdjustments);
-
-  current_imgData = imgData;
-  current_pixelsData = imgData.data;
-  rotate_ctx.putImageData(imgData , 0 , 0)
-
-  slider_hsl_h_red.value = 0.0;
-  slider_hsl_h_orange.value = 0.0;
-  slider_hsl_h_yellow.value = 0.0;
-  slider_hsl_h_green.value = 0.0;
-  slider_hsl_h_cyan.value = 0.0;
-  slider_hsl_h_blue.value = 0.0;
-  slider_hsl_h_purple.value = 0.0;
-
-  slider_hsl_s_red.value = 0.0;
-  slider_hsl_s_orange.value = 0.0;
-  slider_hsl_s_yellow.value = 0.0;
-  slider_hsl_s_green.value = 0.0;
-  slider_hsl_s_cyan.value = 0.0;
-  slider_hsl_s_blue.value = 0.0;
-  slider_hsl_s_purple.value = 0.0;
-
-  slider_hsl_l_red.value = 0.0;
-  slider_hsl_l_orange.value = 0.0;
-  slider_hsl_l_yellow.value = 0.0;
-  slider_hsl_l_green.value = 0.0;
-  slider_hsl_l_cyan.value = 0.0;
-  slider_hsl_l_blue.value = 0.0;
-  slider_hsl_l_purple.value = 0.0;
-  // debugger;
-  for (var i = 0 ; i < 7; i++){
-    channels_7[i].hue = 0.0;
-    channels_7[i].saturation = 0.0;
-    channels_7[i].brightness = 0.0;
-    channels_7[i].defined = false;
-  }
-  // debugger;
 }
 // 深拷贝
 function deepCopy(obj) {

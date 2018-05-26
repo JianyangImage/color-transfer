@@ -429,10 +429,10 @@
               <span class="fl">暗角</span>
               <span class="fr">{{ vignette }}</span>
             </div>
-            <el-slider v-model="vignette" :min="-50" :max="50" :show-tooltip="false" @change="setVignette"></el-slider>
+            <el-slider v-model="vignette" :min="0" :max="40" :show-tooltip="false" @change="setVignette"></el-slider>
           </el-menu-item>
           <el-menu-item index="8-1-2">
-            <el-button type="primary" @click="saveResult">确定</el-button>
+            <el-button type="primary" @click="saveVignette">确定</el-button>
             <el-button @click="resetVignette">重置</el-button>
           </el-menu-item>
         </el-menu-item-group>
@@ -455,7 +455,7 @@
             </div>
             <el-switch v-model="invert" on-text="" off-text="" @change="setInvert" on-color="#7D5CFF"></el-switch>
           </el-menu-item>
-          <el-menu-item index="5-3-3">
+          <el-menu-item index="9-1-3">
             <el-button type="primary" @click="saveResult">确定</el-button>
           </el-menu-item>
         </el-menu-item-group>
@@ -463,35 +463,46 @@
       <!--1010101010-->
       <el-submenu index="10">
         <template slot="title"><i class="my-icon-filter my-icon"></i>滤镜</template>
+          <div>
             <el-row :gutter="5" class="filter-ct">
               <el-col :span="12" v-for="item in filterList">
-                <div class="filter" :data-filter="item.name" @click="setFilter">
+                <div class="filter" :data-filter="item.name" :data-key="item.id" @click="setFilter" v-show="FilterListVisible">
                   <img class="filter-preview" :src="item.preview">
                   <p class="filter-name">{{ item.desc }}</p>
                 </div>
               </el-col>
             </el-row>
+            <div v-show="!FilterListVisible">
+              <img class="filter-preview"
+                   :src="filterList[filterId].preview">
+              <el-menu-item index="10-1-1">
+                <el-button type="primary" @click="saveFilter">确定</el-button>
+                <el-button @click="restFilter">取消</el-button>
+              </el-menu-item>
+            </div>
+
+          </div>
       </el-submenu>
     </el-menu>
   </div>
-  <div class="project-info">
-    <ul class="opensource">
-      <li class="item fl"><p class="title">Power by:</p></li>
-      <li class="item fl" v-for="item in opensource">
-        <a :href="item.link" target="_blank" class="clearfix">
-          <span class="icon fl" :style="item.logo"></span>
-          <p class="desc fl">{{ item.name }}</p>
-        </a>
-      </li>
-    </ul>
-  </div>
+  <!--<div class="project-info">-->
+    <!--<ul class="opensource">-->
+      <!--<li class="item fl"><p class="title">Power by:</p></li>-->
+      <!--<li class="item fl" v-for="item in opensource">-->
+        <!--<a :href="item.link" target="_blank" class="clearfix">-->
+          <!--<span class="icon fl" :style="item.logo"></span>-->
+          <!--<p class="desc fl">{{ item.name }}</p>-->
+        <!--</a>-->
+      <!--</li>-->
+    <!--</ul>-->
+  <!--</div>-->
 </div>
 </template>
 
 <script>
   import $ from 'jquery';
   import HSBChannel from '../assets/js/HSBChannel.js';
-  import Curve from '../assets/js/curve.js'
+  import Curve from '../assets/js/curve2.js'
   import SourceUpload from '../components/sourceUpload';
 
   export default {
@@ -581,53 +592,65 @@
         sharpen: 0,
         vignette: 0,
         sunrise: false,
+        FilterListVisible: true,
+        filterId: 0,
         filterList: [
           {
+            id: 0,
             name: 'sunrise',
             preview: './static/image/filter-sunrise.jpg',
             desc: '日出辉映',
           },
           {
+            id: 1,
             name: 'lomo',
             preview: './static/image/filter-lomo.jpg',
             desc: '经典Lomo',
           },
           {
+            id: 2,
             name: 'clarity',
             preview: './static/image/filter-clarity.jpg',
             desc: '这一刻 更清晰',
           },
           {
+            id: 3,
             name: 'hazyDays',
             preview: './static/image/filter-hazyDays.jpg',
             desc: '这一刻 更朦胧',
           },
           {
+            id: 4,
             name: 'crossProcess',
             preview: './static/image/filter-crossProcess.jpg',
             desc: '怀旧电影',
           },
           {
+            id: 5,
             name: 'concentrate',
             preview: './static/image/filter-concentrate.jpg',
             desc: '美式咖啡',
           },
           {
+            id: 6,
             name: 'jarques',
             preview: './static/image/filter-jarques.jpg',
             desc: '抑郁深蓝',
           },
           {
+            id: 7,
             name: 'nostalgia',
             preview: './static/image/filter-nostalgia.jpg',
             desc: '泛黄记忆',
           },
           {
+            id: 8,
             name: 'pinhole',
             preview: './static/image/filter-pinhole.jpg',
             desc: '黑白胶片',
           },
           {
+            id: 9,
             name: 'sinCity',
             preview: './static/image/filter-sinCity.jpg',
             desc: '水墨印染',
@@ -1090,12 +1113,37 @@
         this.$store.dispatch('setVignette', this.vignette);
       },
       setFilter(e) {
+        this.FilterListVisible = false;
         const $target = $(e.currentTarget);
         const filterType = $target.data('filter');
-
+        this.filterId = $target.data('key');
+        console.log(this.filterId);
         this.$store.dispatch('setFilter', filterType);
       },
+      saveFilter() {
+        this.FilterListVisible = true;
+        this.$store.dispatch('setSaveFiltering', true);
+        this.$store.dispatch('setFilter', '');
+        this.$notify({
+          title: '提示',
+          message: '参数调整完成 可点击下载',
+          type: 'success',
+          duration: 1200,
+        });
+      },
+      saveVignette() {
+        this.$store.dispatch('setVignetteing', true);
+        // this.$store.dispatch('setFilter', '');
+        this.$notify({
+          title: '提示',
+          message: '参数调整完成 可点击下载',
+          type: 'success',
+          duration: 1200,
+        });
+        // this.vignette = 0;
+      },
       saveResult() {
+        this.FilterListVisible = true;
         const imgUrl = this.$store.state.storeUrl;
         this.$store.dispatch('setImgUrl', imgUrl);
         this.$store.dispatch('storeResult', '');
@@ -1103,7 +1151,7 @@
           title: '提示',
           message: '参数调整完成 可点击下载',
           type: 'success',
-          duration: 1500,
+          duration: 1200,
         });
         this.brightness = 0;
         this.contrast = 0;
@@ -1115,6 +1163,7 @@
         this.invert = false;
         this.sharpen = 0;
         this.rotate = 0;
+        this.vignette = 0;
         // hue
         this.hueRed = 0;
         this.hueOrange = 0;
@@ -1203,7 +1252,7 @@
           title: '提示',
           message: '参数调整完成 可点击下载',
           type: 'success',
-          duration: 1500,
+          duration: 1200,
         });
         this.resetCurves();
       },
@@ -1218,6 +1267,11 @@
         this.resetGrayscale();
         this.resetNoise();
         this.resetSharpen();
+        this.restFilter();
+      },
+      restFilter() {
+        this.FilterListVisible = true;
+        this.$store.dispatch('setRestFiltering', true);
       },
       resetBrightnessAndContrast() {
         this.brightness = 0;
@@ -1269,7 +1323,7 @@
         this.sigma = 0;
       },
       resetVignette() {
-
+        this.vignette = 0;
       },
       resetRotate(){
         this.rotate = 0;

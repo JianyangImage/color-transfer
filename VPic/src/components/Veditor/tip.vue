@@ -1,17 +1,17 @@
 <template>
   <div>
-    <el-alert
-      v-show="uploaded"
-      type="success"
-      :title="successTip.title"
-      :description="successTip.desc">
-    </el-alert>
-    <el-alert
-      v-show="!uploaded"
-      type="info"
-      :title="importTip.title"
-      :description="importTip.desc">
-    </el-alert>
+    <!--<el-alert-->
+      <!--v-show="uploaded"-->
+      <!--type="success"-->
+      <!--:title="successTip.title"-->
+      <!--:description="successTip.desc">-->
+    <!--</el-alert>-->
+    <!--<el-alert-->
+      <!--v-show="!uploaded"-->
+      <!--type="info"-->
+      <!--:title="importTip.title"-->
+      <!--:description="importTip.desc">-->
+    <!--</el-alert>-->
   </div>
 </template>
 
@@ -34,6 +34,17 @@
         return this.$store.state.uploaded;
       },
     },
+    watch: {
+      uploaded(bool) {
+        if(bool){
+          this.$notify({
+            title: '图片导入成功',
+            type: 'success',
+            duration: 1200,
+          });
+        }
+      }
+    }
   };
 </script>
 

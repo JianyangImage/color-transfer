@@ -80,6 +80,9 @@ export default new Vuex.Store({
       vignette: 0,
     },
     imgFilter: '',
+    restFiltering: false,
+    saveFiltering: false,
+    vignetteing: false,
     storeUrl: '',
     sourceurl: '',
   },
@@ -165,6 +168,9 @@ export default new Vuex.Store({
         vignette: 0,
       };
       state.imgFilter = '';
+      state.vignetteing = false;
+      state.restFiltering = false;
+      state.saveFiltering = false;
       state.storeUrl = '';
       state.sourceurl = '';
     },
@@ -288,6 +294,15 @@ export default new Vuex.Store({
     },
     setResultUrl(state, val) {
       state.resultUrl = val;
+    },
+    setRestFiltering(state, val) {
+      state.restFiltering = val;
+    },
+    setSaveFiltering(state, val) {
+      state.saveFiltering = val;
+    },
+    setVignetteing(state, val) {
+      state.vignetteing = val;
     },
   },
   actions: {
@@ -422,6 +437,15 @@ export default new Vuex.Store({
     },
     setResultUrl({ commit }, val) {
       commit('setResultUrl', val);
+    },
+    setRestFiltering({ commit }, val) {
+      commit('setRestFiltering', val);
+    },
+    setSaveFiltering({ commit }, val) {
+      commit('setSaveFiltering', val);
+    },
+    setVignetteing({ commit }, val) {
+      commit('setVignetteing', val);
     },
   },
 });
